@@ -1,0 +1,26 @@
+﻿################################################################################
+# Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
+################################################################################
+
+*.exe
+*.user
+*.csproj
+*.ide-wal
+*.ide-shm
+*.ide
+*.lock
+*.pdb
+/lab1/lab1/bin/Debug/lab1.exe.config
+/lab1/lab1/obj/Debug
+/lab1/lab1/obj/Release
+/lab1/lab1/Properties
+/lab0/lab0/obj/Debug
+/lab0/lab0/bin/Debug
+/lab0/.vs/lab0/v15/.suo
+/lab0/lab0/Properties/AssemblyInfo.cs
+/lab1/lab1/bin/Debug/file2.txt
+/lab1/lab1/bin/Debug/file1.txt
+/lab1/lab1/bin/Debug/text2.txt
+/lab1/lab1/bin/Debug/text1.txt
+/lab1/lab1/bin/Debug/image2.JPG
+/lab1/lab1/bin/Debug/image1.JPG
