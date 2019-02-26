@@ -1,2 +1,2 @@
-# C-_labs
+# C Sharp_labs
 c# university course
