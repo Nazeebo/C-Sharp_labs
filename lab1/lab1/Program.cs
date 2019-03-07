@@ -1,9 +1,11 @@
-﻿using System;
+﻿ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommandLine;
+
 
 namespace lab1 {
 
@@ -38,6 +40,7 @@ namespace lab1 {
             return stream1.Position;
         }
 
+
         public static bool CheckNext(ref FileStream stream1, ref FileStream stream2, out int a, out int b, ref StatusOfFiles status) {
             a = stream1.ReadByte();
             b = stream2.ReadByte();
@@ -52,7 +55,8 @@ namespace lab1 {
             return a == b ? false : true;
         }
 
-        public static void PrintRestOfStream(ref FileStream stream, string pattern, int buf, ref int count, ref StatusOfFiles status) {
+
+        public static void PrintRestOfStream(ref FileStream stream, string pattern, int buf, ref int count, ref StatusOfFiles status, bool side, bool text) {
             count++;
             while (count < N || buf != EOF) {
                 buf = stream.ReadByte();
@@ -62,6 +66,29 @@ namespace lab1 {
             }
             status = StatusOfFiles.BothEof;
         }
+
+
+        public static void PrintOne( int byte1, int byte2, bool side, bool text) {
+            if (text) {
+                char out1 = (char)byte1, out2 = (char)byte2;
+                if (Char.IsControl(out1))
+                    out1 = '.';
+                if (Char.IsControl(out2))
+                    out2 = '.';
+
+                if (side)
+                    Console.Write("{0}|{1} ", out1, out2);
+                else
+                    Console.Write("{0}|{1} ", out1, out2);
+            }
+            else {
+                if(side)
+                    Console.Write("0x{0:x}|0x{1:x} ", byte1, byte2);
+                else
+                    Console.Write("0x{0:x}(0x{1:x}) ", byte1, byte2);
+            }
+        }
+
 
         static void Main(string[] args) {
             StatusOfFiles status = StatusOfFiles.NoneEof;
@@ -82,6 +109,27 @@ namespace lab1 {
                     N = stream2.Length;
             }
 
+            bool brief = false, text = false, side = false, isDiff = false;
+
+            Parser.Default.ParseArguments<Options>(args).WithParsed<Options>(opts => {
+                if (opts.Length > 0) {
+                    Console.WriteLine("Parameter --length was set and equals {0}", opts.Length);
+                    N = opts.Length;
+                }
+                if (opts.Text) {
+                    Console.WriteLine("Parameter --text was set");
+                    text = true;
+                }
+                if (opts.Brief) {
+                    Console.WriteLine("Parameter --brief was set");
+                    brief = true;
+                }
+                if (opts.Side_by_side) {
+                    Console.WriteLine("Parameter --side-by-side was set");
+                    side = true;
+                }
+            });
+
             int byte1 = 0, byte2 = 0, count = 0;
             long position = 0;
             while (status != StatusOfFiles.BothEof && count < N) {
@@ -89,38 +137,59 @@ namespace lab1 {
                 position = SkipSame(ref stream1, ref stream2, out byte1, out byte2, ref status);
 
                 if (status == StatusOfFiles.NoneEof) {
-                    Console.Write("0x{0:x8}: ", position - 1);
-                    offset = true;
+                    if (!isDiff)
+                        isDiff = true;
 
-                    Console.Write("0x{0:x}(0x{1:x}) ", byte1, byte2);
+                    if (!brief) {
+                        Console.Write("0x{0:x8}: ", position - 1);
+                        offset = true;
+
+                        PrintOne(byte1, byte2, side, text);
+                    }
+
                     count++;
 
                     while (CheckNext(ref stream1, ref stream2, out byte1, out byte2, ref status) && status == StatusOfFiles.NoneEof) {
                         position++;
-                        Console.Write("0x{0:x}(0x{1:x}) ", byte1, byte2);
+                        if(!brief)
+                            PrintOne(byte1, byte2, side, text);
                         count++;
                     }
                 }
 
-                if (!offset)
-                    Console.Write("0x{0:x8}: ", position - 1);
+                if (status == StatusOfFiles.FirstEof || status == StatusOfFiles.SecondEof) {
+                    if (!offset && !brief && status != StatusOfFiles.BothEof)
+                        Console.Write("0x{0:x8}: ", position - 1);
 
-                if (status == StatusOfFiles.SecondEof) {
-                    Console.Write("0x{0:x}(<EOF>) ", byte1);
-                    PrintRestOfStream(ref stream1, "0x{0:x} ", byte1, ref count, ref status);
-                }
-                if(status == StatusOfFiles.FirstEof) {
-                    Console.Write("<EOF>(0x{0:x}) ", byte2);
-                    PrintRestOfStream(ref stream2, "(0x{0:x}) ", byte2, ref count, ref status);
+                    if (!isDiff)
+                        isDiff = true;
+
+                    bool isFirst = false;
+                    if (status == StatusOfFiles.FirstEof)
+                        isFirst = true;
+
+                    if (!brief) {
+                        if (status == StatusOfFiles.SecondEof) {
+                            Console.Write("0x{0:x}(<EOF>) ", byte1);
+                            PrintRestOfStream(ref stream1, "0x{0:x} ", byte1, ref count, ref status, side, text);
+                        }
+                        else {
+                            Console.Write("<EOF>(0x{0:x}) ", byte2);
+                            PrintRestOfStream(ref stream2, "(0x{0:x}) ", byte2, ref count, ref status, side, text);
+                        }
+                    }
                 }
 
-                Console.WriteLine();
+                if(!brief)
+                    Console.WriteLine();
 
             }
 
-            if (count == 0)
+            if (!isDiff)
                 Console.WriteLine("Files are identical");
+            else if(brief && isDiff) Console.WriteLine("Files are not identical");
 
         }
+
     }
 }
