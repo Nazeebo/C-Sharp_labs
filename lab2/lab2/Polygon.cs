@@ -11,7 +11,7 @@ namespace lab2 {
 
         public Polygon(int count, List<Point> points) {
             this.count = count;
-            list = points;
+            list = new List<Point>(points);
             list.Add(list.First());
 
             perimeter = calcPerimeter();
@@ -20,7 +20,7 @@ namespace lab2 {
         }
 
         public override string ToString() {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder(); //String.Format
             sb.AppendFormat("Polygon: Area = {0}, Perimeter = {1}, center of mass in ({2},{3})", square, perimeter, centerMass.x, centerMass.y);
             return sb.ToString();
         }
@@ -43,20 +43,25 @@ namespace lab2 {
 
         public override Point massCenter() {
             Point[] arr = list.ToArray();
-            double tr_area;
-            Point tr_center;
+            double tr_area_top, tr_area_bot;
+            Point tr_center_top, tr_center_bot;
             Point result = new Point(0,0);
-            for (int i = 2; i < list.Count - 1; ++i) {
-                tr_area = triangle_area(arr[i - 2], arr[i - 1], arr[i]);
-                tr_center = triangle_center(arr[i - 2], arr[i - 1], arr[i]);
-                result.x += (tr_area / square) * tr_center.x;
-                result.y += (tr_area / square) * tr_center.y;
+            for (int i = 1; i < list.Count; ++i) {
+                tr_area_top = triangle_area(arr[i], new Point(arr[i - 1].x, 0), arr[i - 1]);
+                tr_center_top = triangle_center(arr[i], new Point(arr[i - 1].x, 0), arr[i - 1]);
+                result.x += (tr_area_top / square) * tr_center_top.x;
+                result.y += (tr_area_top / square) * tr_center_top.y;
+
+                tr_area_bot = triangle_area(arr[i], new Point(arr[i].x, 0), new Point(arr[i - 1].x, 0));
+                tr_center_bot = triangle_center(arr[i], new Point(arr[i].x, 0), new Point(arr[i - 1].x, 0));
+                result.x += (tr_area_bot / square) * tr_center_bot.x;
+                result.y += (tr_area_bot / square) * tr_center_bot.y;
             }
             return result;
         }
 
         public double triangle_area(Point p1, Point p2, Point p3) {
-            return Math.Abs((p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x)) / 2.0;
+            return -((p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x)) / 2.0;
         }
 
         public Point triangle_center(Point p1, Point p2, Point p3) {

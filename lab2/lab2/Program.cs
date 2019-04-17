@@ -45,7 +45,7 @@ namespace lab2 {
             Console.WriteLine("С - cоздать фигуру");
             Console.WriteLine("L - печать списка фигур с их аттрибутами");
             Console.WriteLine("H - помощь");
-            Console.WriteLine("Q - выход из программы");
+            Console.WriteLine("У - выход из программы");
         }
 
         private static void printShapes(List<Shape> shapes) {

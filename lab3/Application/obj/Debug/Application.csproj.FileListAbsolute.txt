@@ -1,0 +1,10 @@
+D:\University\C_Sharp\lab3\Application\bin\Debug\Application.exe.config
+D:\University\C_Sharp\lab3\Application\bin\Debug\Application.exe
+D:\University\C_Sharp\lab3\Application\bin\Debug\Application.pdb
+D:\University\C_Sharp\lab3\Application\bin\Debug\Ratio.dll
+D:\University\C_Sharp\lab3\Application\bin\Debug\Ratio.pdb
+D:\University\C_Sharp\lab3\Application\obj\Debug\Application.csprojAssemblyReference.cache
+D:\University\C_Sharp\lab3\Application\obj\Debug\Application.csproj.CoreCompileInputs.cache
+D:\University\C_Sharp\lab3\Application\obj\Debug\Application.csproj.CopyComplete
+D:\University\C_Sharp\lab3\Application\obj\Debug\Application.exe
+D:\University\C_Sharp\lab3\Application\obj\Debug\Application.pdb

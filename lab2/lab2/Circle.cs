@@ -21,7 +21,6 @@ namespace lab2 {
         public override string ToString() {
             StringBuilder sb = new StringBuilder();
             sb.AppendFormat("Circle: Area = {0}, Perimeter = {1}, center of mass in ({2},{3})", square, perimeter, centerMass.x, centerMass.y);
-            //Console.Write("{0},{1}  {2}", center.x, center.y, radius);
             return sb.ToString();
         }
 
