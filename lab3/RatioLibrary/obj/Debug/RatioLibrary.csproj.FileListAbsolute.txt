@@ -1,0 +1,12 @@
+D:\University\C_Sharp\lab3\Ratio\bin\Debug\Ratio.dll
+D:\University\C_Sharp\lab3\Ratio\bin\Debug\Ratio.pdb
+D:\University\C_Sharp\lab3\Ratio\obj\Debug\RatioLibrary.csproj.CoreCompileInputs.cache
+D:\University\C_Sharp\lab3\Ratio\obj\Debug\Ratio.dll
+D:\University\C_Sharp\lab3\Ratio\obj\Debug\Ratio.pdb
+D:\University\C_Sharp\lab3\Ratio\obj\Debug\RatioLibrary.csprojAssemblyReference.cache
+D:\University\C_Sharp\lab3\RatioLibrary\bin\Debug\Ratio.dll
+D:\University\C_Sharp\lab3\RatioLibrary\bin\Debug\Ratio.pdb
+D:\University\C_Sharp\lab3\RatioLibrary\obj\Debug\RatioLibrary.csprojAssemblyReference.cache
+D:\University\C_Sharp\lab3\RatioLibrary\obj\Debug\RatioLibrary.csproj.CoreCompileInputs.cache
+D:\University\C_Sharp\lab3\RatioLibrary\obj\Debug\Ratio.dll
+D:\University\C_Sharp\lab3\RatioLibrary\obj\Debug\Ratio.pdb
