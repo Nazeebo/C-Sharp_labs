@@ -10,7 +10,7 @@ namespace RatioLibrary{
     }
 
     public class Ratio {
-        private int gcd(int a, int b) {
+        private static int gcd(int a, int b) {
             if (b == 0)
                 return a;
             return gcd(b, a % b);
@@ -34,11 +34,13 @@ namespace RatioLibrary{
 
 
         public static Ratio operator +(Ratio r1, Ratio r2) {
-            return new Ratio(r1.numerator * r2.denominator + r2.numerator * r1.denominator, r1.denominator * r2.denominator);
+            int k = gcd(r1.denominator,r2.denominator);
+            return new Ratio(r1.numerator * (r2.denominator / k) + r2.numerator * (r1.denominator / k), r1.denominator * r2.denominator / k);
         }
 
         public static Ratio operator -(Ratio r1, Ratio r2) {
-            return new Ratio(r1.numerator * r2.denominator - r2.numerator * r1.denominator, r1.denominator * r2.denominator);
+            int k = gcd(r1.denominator, r2.denominator);
+            return new Ratio(r1.numerator * (r2.denominator / k) - r2.numerator * (r1.denominator / k), r1.denominator * r2.denominator / k);
         }
 
         public static Ratio operator +(Ratio r) { 
@@ -50,12 +52,18 @@ namespace RatioLibrary{
         }
 
         public static Ratio operator *(Ratio r1, Ratio r2) {
-            return new Ratio(r1.numerator * r2.numerator, r1.denominator * r2.denominator);
+            int k1 = gcd(r1.numerator, r2.denominator);
+            int k2 = gcd(r2.numerator, r1.denominator);
+
+            return new Ratio(r1.numerator/k1 * r2.numerator/k2, r1.denominator/k2 * r2.denominator/k1);
         }
 
         public static Ratio operator /(Ratio r1, Ratio r2) {
             if(r2.numerator == 0) throw new DenominatorException("В результате деление у дроби был бы нулевой знаменатель");
-            return new Ratio(r1.numerator * r2.denominator, r1.denominator * r2.numerator);
+            int num = gcd(r1.numerator, r2.numerator);
+            int den = gcd(r1.denominator, r2.denominator);
+
+            return new Ratio(r1.numerator/num * r2.denominator/den, r1.denominator/den * r2.numerator/num);
         }
 
         public double ToDouble() {

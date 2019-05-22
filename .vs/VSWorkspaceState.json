@@ -5,10 +5,13 @@
     "\\lab0\\lab0",
     "\\lab0\\lab0\\obj",
     "\\lab0\\lab0\\Properties",
-    "\\lab1",
-    "\\lab1\\lab1",
-    "\\lab3"
+    "\\lab3",
+    "\\lab3\\Application",
+    "\\lab3\\RatioLibrary",
+    "\\lab3\\TestResults",
+    "\\lab3\\TestResults\\Deploy_1 2019-05-22 19_10_39",
+    "\\lab3\\TestResults\\Deploy_1 2019-05-22 19_10_39\\In"
   ],
-  "SelectedNode": "\\lab3\\lab3.sln",
+  "SelectedNode": "\\lab3\\Application\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
