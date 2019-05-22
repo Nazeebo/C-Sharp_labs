@@ -1,0 +1,7 @@
+D:\University\C_Sharp\lab4\BitContainer\bin\Debug\BitContainer.exe.config
+D:\University\C_Sharp\lab4\BitContainer\bin\Debug\BitContainer.exe
+D:\University\C_Sharp\lab4\BitContainer\bin\Debug\BitContainer.pdb
+D:\University\C_Sharp\lab4\BitContainer\obj\Debug\BitContainer.csprojAssemblyReference.cache
+D:\University\C_Sharp\lab4\BitContainer\obj\Debug\BitContainer.csproj.CoreCompileInputs.cache
+D:\University\C_Sharp\lab4\BitContainer\obj\Debug\BitContainer.exe
+D:\University\C_Sharp\lab4\BitContainer\obj\Debug\BitContainer.pdb
