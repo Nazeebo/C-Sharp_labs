@@ -33,7 +33,7 @@ namespace lab2 {
                             return;
                         }
                     default: {
-                            Console.WriteLine("Некорректный вход");
+                            Console.WriteLine("Wrong Input");
                             break;
                         }
                 }
@@ -42,10 +42,10 @@ namespace lab2 {
 
         private static void printHelp() {
             Console.WriteLine();
-            Console.WriteLine("С - cоздать фигуру");
-            Console.WriteLine("L - печать списка фигур с их аттрибутами");
-            Console.WriteLine("H - помощь");
-            Console.WriteLine("У - выход из программы");
+            Console.WriteLine("c - create a shape");
+            Console.WriteLine("l - print a list of shapes with their attributes");
+            Console.WriteLine("h - help");
+            Console.WriteLine("e - exit of program");
         }
 
         private static void printShapes(List<Shape> shapes) {
@@ -56,7 +56,7 @@ namespace lab2 {
 
         private static void createMenu(List<Shape> shapes) {
             Console.WriteLine();
-            Console.WriteLine("Выберите фигуру для создания: У - Эллипс, С - круг, З - многоугольник, нажмите Й для отмены");
+            Console.WriteLine("Choose a shape to create: E - Ellipse, С - Circle, P - polygon, press Q to cancel");
             ConsoleKeyInfo key;
             char keyChar;
 
@@ -91,7 +91,7 @@ namespace lab2 {
 
         private static void createEllipse(List<Shape> shapes) {
             Point focus1, focus2;
-            Console.WriteLine("Введите координаты фокусов в формате x1 y1 x2 y2");
+            Console.WriteLine("Input coordinates of focuses in a format x1 y1 x2 y2");
             string line = Console.ReadLine();
             Regex regForPoint = new Regex(@"(\d*\.?\d+)\s+(\d*\.?\d+)");
             MatchCollection matches = regForPoint.Matches(line);
@@ -100,43 +100,43 @@ namespace lab2 {
                 GroupCollection group2 = matches[1].Groups;
                 focus1 = new Point(Convert.ToDouble(group1[1].Value), Convert.ToDouble(group1[2].Value));
                 focus2 = new Point(Convert.ToDouble(group2[1].Value), Convert.ToDouble(group2[2].Value));
-                Console.WriteLine("Введите длину большой полуоси");
+                Console.WriteLine("Input a length of a big half-axis");
                 double axis = Convert.ToDouble(Console.ReadLine());
                 shapes.Add( new Ellipse(focus1, focus2, axis));
             }
             else {
-                Console.WriteLine("Неудалось создать эллипс из-за неправильного ввода");
+                Console.WriteLine("Couldn't create an ellipse because of a wrong input");
             }
         }
 
         private static void createCircle(List<Shape> shapes) {
             Point center;
-            Console.WriteLine("Введите координаты центра круга в формате x y");
+            Console.WriteLine("Input coordinates of circle's center in a format x y");
             string line = Console.ReadLine();
             Regex regForPoint = new Regex(@"(\d*\.?\d+)\s+(\d*\.?\d+)");
             MatchCollection matches = regForPoint.Matches(line);
             if (matches.Count == 1) {
                 GroupCollection group1 = matches[0].Groups;
                 center = new Point(Convert.ToDouble(group1[1].ToString()), Convert.ToDouble(group1[2].ToString()));
-                Console.WriteLine("Введите радиус");
+                Console.WriteLine("Input a radius");
                 double radius = Convert.ToDouble(Console.ReadLine().ToString());
                 shapes.Add(new Circle(center, radius));
             }
             else {
-                Console.WriteLine("Неудалось создать круг из-за неправильного ввода");
+                Console.WriteLine("Couldn't create a circle because of a wrong input");
             }
         }
 
         private static void createPolygon(List<Shape> shapes) {
             int n;
             List<Point> points = new List<Point>();
-            Console.WriteLine("Введите число точек многоугольника");
+            Console.WriteLine("Input a number of points in a polygon");
             n = Convert.ToInt32(Console.ReadLine());
             if(n <= 2) {
-                Console.WriteLine("Многоугольник из менее трёх точек не сделаешь");
+                Console.WriteLine("You can't create a polygon of less then 3 points");
                 return;
             }
-            Console.WriteLine("Введите {0} точек в формате x1 y1 x2 y2 .... xn yn", n);
+            Console.WriteLine("Input {0} points in a format x1 y1 x2 y2 .... xn yn", n);
             string line = Console.ReadLine();
             Regex regForPoint = new Regex(@"(\d*\.?\d+)\s+(\d*\.?\d+)");
             MatchCollection matches = regForPoint.Matches(line);
@@ -148,7 +148,7 @@ namespace lab2 {
                 shapes.Add(new Polygon(n, points));
             }
             else {
-                Console.WriteLine("Неудалось создать круг из-за неправильного ввода");
+                Console.WriteLine("Couldn't create a polygon because of a wrong input");
             }
         }
 

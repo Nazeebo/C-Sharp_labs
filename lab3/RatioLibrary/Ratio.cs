@@ -41,7 +41,7 @@ namespace RatioLibrary{
             return new Ratio(r1.numerator * r2.denominator - r2.numerator * r1.denominator, r1.denominator * r2.denominator);
         }
 
-        public static Ratio operator +(Ratio r) {  //?
+        public static Ratio operator +(Ratio r) { 
             return new Ratio(r.numerator, r.denominator);
         }
 
@@ -54,6 +54,7 @@ namespace RatioLibrary{
         }
 
         public static Ratio operator /(Ratio r1, Ratio r2) {
+            if(r2.numerator == 0) throw new DenominatorException("В результате деление у дроби был бы нулевой знаменатель");
             return new Ratio(r1.numerator * r2.denominator, r1.denominator * r2.numerator);
         }
 

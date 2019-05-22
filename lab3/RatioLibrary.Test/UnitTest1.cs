@@ -42,7 +42,7 @@ namespace RatioLibrary.Test {
             r1 = new Ratio(1, 2);
             r2 = new Ratio(1, 4);
 
-            Assert.AreEqual(0.75, (r1 + r2).ToDouble());
+            Assert.AreEqual(new Ratio(3,4).ToDouble(), (r1 + r2).ToDouble());
         }
 
         [TestMethod]
@@ -50,7 +50,7 @@ namespace RatioLibrary.Test {
             r1 = new Ratio(1, 2);
             r2 = new Ratio(1, 4);
 
-            Assert.AreEqual(0.25, (r1 - r2).ToDouble());
+            Assert.AreEqual(new Ratio(1,4).ToDouble(), (r1 - r2).ToDouble());
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace RatioLibrary.Test {
             r1 = new Ratio(1, 2);
             r2 = new Ratio(1, 4);
 
-            Assert.AreEqual(0.125, (r1 * r2).ToDouble());
+            Assert.AreEqual(new Ratio(1,8).ToDouble(), (r1 * r2).ToDouble());
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace RatioLibrary.Test {
             r1 = new Ratio(1, 2);
             r2 = new Ratio(1, 4);
 
-            Assert.AreEqual(2.0, (r1 / r2).ToDouble());
+            Assert.AreEqual(new Ratio(2,1).ToDouble(), (r1 / r2).ToDouble());
         }
     }
 }
