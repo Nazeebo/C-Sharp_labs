@@ -1,16 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\lab0\\lab0",
-    "\\lab0\\lab0\\obj",
-    "\\lab0\\lab0\\Properties",
-    "\\lab3\\Application",
-    "\\lab3\\RatioLibrary",
-    "\\lab3\\RatioLibrary.Test",
-    "\\lab3\\TestResults",
     "\\lab4",
     "\\lab4\\BitContainer"
   ],
-  "SelectedNode": "\\lab4\\BitContainer\\Program.cs",
+  "SelectedNode": "\\lab4\\lab4.sln",
   "PreviewInSolutionExplorer": false
 }
