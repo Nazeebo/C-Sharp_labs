@@ -11,7 +11,7 @@ namespace lab5 {
         static void Main(string[] args) {
             MatrixFilter filter = new MatrixFilter(5);
             //filter.writeKernel();
-
+            
             Bitmap bitmapImage = new Bitmap("image.jpg");
             Bitmap unsafeImage = new Bitmap(bitmapImage);
 
