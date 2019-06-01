@@ -13,18 +13,18 @@ namespace lab5 {
             this.r = radius;
             int K = 2 * r + 1;
             kernel = new double[K, K];
-            gaussBlurCore(ref kernel, K);
+            gaussBlurCore(K);
         }
-        private double gaussian (double x, double mu, double sigma) {
-            return Math.Exp(-0.5*(Math.Pow((x - mu) / sigma, 2.0))) / (2 * Math.PI * Math.Pow(sigma, 2.0));
+        private double gaussian (double x, double y, double sigma) {
+            return Math.Exp(-(x*x + y*y) / 2*sigma*sigma) / (2 * Math.PI * Math.Pow(sigma, 2.0));
         }
-        private void gaussBlurCore(ref double[,] kernel, int K) {
-            double sigma = 0.2;
+        private void gaussBlurCore(int K) {
+            double sigma = 1;
             double sum = 0.0; //for accumulating the kernel values
             for(int x = 0; x < K; ++x)
                 for(int y = 0; y < K; ++y) {
-                    //kernel[x,y] = Math.Exp(-0.5 * (Math.Pow((x - radius) / sigma, 2.0) + Math.Pow((y - radius) / sigma, 2.0))) / (2 * Math.PI * Math.Pow(sigma, 2.0));
-                    kernel[x, y] = gaussian(x, r, sigma) + gaussian(y, r, sigma);
+                    //kernel[x,y] = Math.Exp(-0.5 * (Math.Pow((x - r) / sigma, 2.0) + Math.Pow((y - r) / sigma, 2.0))) / (2 * Math.PI * Math.Pow(sigma, 2.0));
+                    kernel[x, y] = gaussian(x-r, y-r, sigma);
                     sum += kernel[x, y];
                 }
 
@@ -33,11 +33,12 @@ namespace lab5 {
                     kernel[x, y] /= sum;
         }
 
+
         public void writeKernel() {
             int K = 2 * r + 1;
             for(int i = 0; i < K; ++i) {
                 for (int j = 0; j < K; ++j)
-                    Console.Write("{0:F5} ", kernel[i, j]);
+                    Console.Write("{0:F6} ", kernel[i, j]);
                 Console.WriteLine();
             }
         }
