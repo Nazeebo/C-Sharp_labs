@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace lab5 {
     class Program {
         static void Main(string[] args) {
-            MatrixFilter filter = new MatrixFilter(5);
+            MatrixFilter filter = new MatrixFilter(1);
             //filter.writeKernel();
             
             Bitmap bitmapImage = new Bitmap("image.jpg");
