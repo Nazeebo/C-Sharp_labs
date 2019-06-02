@@ -1,0 +1,7 @@
+D:\University\C_Sharp\lab5\lab5\obj\Debug\lab5.csprojAssemblyReference.cache
+D:\University\C_Sharp\lab5\lab5\obj\Debug\lab5.csproj.CoreCompileInputs.cache
+D:\University\C_Sharp\lab5\lab5\bin\Debug\lab5.exe.config
+D:\University\C_Sharp\lab5\lab5\bin\Debug\lab5.exe
+D:\University\C_Sharp\lab5\lab5\bin\Debug\lab5.pdb
+D:\University\C_Sharp\lab5\lab5\obj\Debug\lab5.exe
+D:\University\C_Sharp\lab5\lab5\obj\Debug\lab5.pdb
