@@ -72,8 +72,8 @@ namespace BitContainer {
             if (bit != 0 && bit != 1) 
                 throw new ArgumentOutOfRangeException("Incorrect value");
             pushBit(this[Lenght-1]);
-            for (int i = place; i < Lenght - 1; ++i)
-                this[i + 1] = this[i];
+            for (int i = Lenght - 2; i > place; --i)
+                this[i] = this[i - 1];
             this[place] = bit;
         }
 
