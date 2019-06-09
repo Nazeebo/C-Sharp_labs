@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 namespace BitContainer {
     class BitContainer : IEnumerable<bool> {
         public List<byte> list;
-        private int lenght { get; set; }
+        private int length { get; set; }
 
         public BitContainer() {
             list = new List<byte>();
-            lenght = 0;
+            length = 0;
         }
 
-        public int Lenght => lenght;
+        public int Lenght => length;
 
 
         public void pushBit(int bit) {
             if (bit != 0 && bit != 1) throw new ArgumentOutOfRangeException("Incorrect value");
-            int offset = (++lenght - 1) % 8;
+            int offset = (++length - 1) % 8;
             if (offset == 0) list.Add(0);
-            setBit(lenght - 1, bit);
+            setBit(length - 1, bit);
         }
 
         public void pushBit(bool bit) {
@@ -62,7 +62,7 @@ namespace BitContainer {
         }
 
         public void Clear() {
-            lenght = 0;
+            length = 0;
             list.Clear();
         }
 
@@ -86,7 +86,7 @@ namespace BitContainer {
             if (place >= Lenght || place < 0) throw new IndexOutOfRangeException("Out of range");
             for (int i = place; i < Lenght - 1; ++i)
                 this[i] = this[i + 1];
-            --lenght;
+            --length;
         }
 
         public override string ToString() {
